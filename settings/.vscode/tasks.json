@@ -1,0 +1,22 @@
+{
+    "version": "0.1.0",
+    "command": "g++",
+    "args": ["-fsyntax-only", "-std=c++11", "-Wall", "-Winit-self", "${relativeFile}" ],
+    "isShellCommand": true,
+    "showOutput": "never",
+    "suppressTaskName": true,
+    "taskName": "g++-syntax-check",
+    "isBuildCommand": false,
+    "problemMatcher": {
+        "owner": "cpp",
+        "fileLocation": ["relative", "${workspaceRoot}"],
+        "pattern": {
+            "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5
+        }
+    }
+}
