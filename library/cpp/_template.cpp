@@ -2,9 +2,9 @@
 using namespace std;
 
 typedef long long ll;
-#define REP(i,n) for(int i=0,_n=(int)(n);i<_n;i++)
-template<class T>bool chmin(T&a,const T&b){if(a<=b)return false;a=b;return true;}
-template<class T>bool chmax(T&a,const T&b){if(a>=b)return false;a=b;return true;}
+#define REP(i,n) for(int i=0,_n=(int)(n);i<_n;++i)
+template<class T>bool chmin(T&a,const T&b){return a>b?(a=b,true):false;}
+template<class T>bool chmax(T&a,const T&b){return a<b?(a=b,true):false;}
 
 int nextInt() { int x; scanf("%d", &x); return x;}
 
