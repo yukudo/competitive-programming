@@ -9,7 +9,7 @@ template<class T>bool chmax(T&a,const T&b){return a<b?(a=b,true):false;}
 int nextInt() { int x; scanf("%d", &x); return x;}
 
 int main2() {
-  int n = nextInt();
+  int N = nextInt();
   ll ans = 0;
   cout << ans << endl;
   return 0;
