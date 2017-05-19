@@ -1,3 +1,4 @@
+/* 比較関数をラムダ式で書いて sort に渡すスニペット */
 void custom_sort_example() {
   vector<P> v;
   v.push_back( P(3, 1) );
