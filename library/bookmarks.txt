@@ -1,0 +1,18 @@
+リンク集
+
+TopCoder Arena 直通
+http://www.topcoder.com/contest/arena/ContestAppletProd.jnlp
+
+
+OEIS オンライン数列大辞典
+https://oeis.org/
+
+
+AtCoder atcoder_testcases
+https://www.dropbox.com/sh/arnpe0ef5wds8cv/AAAk_SECQ2Nc6SVGii3rHX6Fa?dl=0
+
+
+ヴィジュアライズツール 平面幾何・グラフ
+http://emkjp.github.io/WebTools/2d.html
+http://emkjp.github.io/WebTools/dot.html
+
