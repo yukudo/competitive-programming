@@ -41,7 +41,7 @@
 最長パスの長さ = グラフを任意の 2 点間に辺が存在しないような頂点集合へ分割する最小分割数
 
 * Dilworthの定理の双対
-** chainの最大サイズ = antichainへの最小分割数 (Mirskyの定理) 
-** antichainの最大サイズ = chainへの最小分割数 (Dilworthの定理) 
+    * chainの最大サイズ = antichainへの最小分割数 (Mirskyの定理) 
+    * antichainの最大サイズ = chainへの最小分割数 (Dilworthの定理) 
 
 --------
