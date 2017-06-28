@@ -25,6 +25,45 @@ int ccw(P a, P b, P c) {
   return 0;
 }
 
+// 2直線の直行判定 : a⊥b <=> dot(a, b) = 0
+bool isOrthogonal(P a1, P a2, P b1, P b2){
+  return abs(dot(a1-a2, b1-b2)) < EPS;
+}
+
+// 2直線の平行判定 : a//b <=> cross(a, b) = 0
+bool isParallel(P a1, P a2, P b1, P b2){
+  return abs( cross( a1-a2 , b1-b2 ) ) < EPS;
+}
+
+// 点cが直線ab上にあるか
+bool isIntersectLP(P a, P b, P c){
+  return abs(cross(b-a, c-a)) < EPS;
+}
+
+// 点cが線分ab上にあるか : |a-c| + |c-b| <= |a-b| なら線分上 
+bool isIntersectSP(P a, P b, P c){
+  return (abs(a-c) + abs(c-b) < abs(a-b) + EPS);
+}
+
+// 直線aと直線bの交差判定
+bool isIntersectLL(P a,P b,P c,P d){
+  return abs(cross(b-a, d-c)) > EPS || // non-parallel
+         abs(cross(b-a, c-a)) < EPS;   // same line
+}
+
+// 直線abと線分cdの交差判定
+bool isIntersectLS(P a, P b, P c, P d){
+  return
+    cross(b-a, c-a) *      //c is left of ab
+    cross(b-a, d-a) < EPS; //d is right of ab
+}
+
+// 線分と線分の交差判定。端点が重なってもtrue
+bool isIntersectSS(P a1, P a2, P b1, P b2){
+  return ccw(a1,a2,b1) * ccw(a1,a2,b2) <= 0 &&
+         ccw(b1,b2,a1) * ccw(b1,b2,a2) <= 0;
+}
+
 // 凸包
 vector<P> convexHull(vector<P> ps){
   int N = (int)ps.size();
