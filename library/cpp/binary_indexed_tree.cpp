@@ -21,11 +21,13 @@ struct BIT {
   void add(int idx, ll val) {
     for (int x=idx+1; x<=n; x+=x&-x) tree[x] += val;
   }
+  // sum[0, idx]
   ll range(int idx) {
     ll sum=0;
     for (int x=idx+1; x>0; x-=x&-x) sum += tree[x];
     return sum;
   }
+  // sum[a, b]
   ll range(int a, int b) {
     return range(b) - range(a - 1);
   }
