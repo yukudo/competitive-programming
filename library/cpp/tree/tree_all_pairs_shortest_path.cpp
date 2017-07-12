@@ -31,7 +31,6 @@ struct RMQStatic {
     this->a = a;
     int M = log2(N) + 1;
     REP(i, N) dp_min[0][i] = i;
-    REP(i, N) dp_max[0][i] = i;
     for (int i = 1, len = 1; i < M; i++, len <<= 1) {
       for (int j = 0; j + len < N; j++) {
         {
@@ -55,17 +54,16 @@ struct RMQStatic {
 
 vector<int> g[MAX_N];
 
-int sp = 0;
-int nod[MAX_N * 2 + 10];
-int dep[MAX_N * 2 + 10];
-int apr[MAX_N];
+int nod[MAX_N * 2 + 10]; // dfsして i 番目に訪問した頂点の番号
+int dep[MAX_N * 2 + 10]; // dfsして i 番目に訪問した頂点の深さ
+int apr[MAX_N]; // nod において頂点 v が始めに出現する添字
 
-void dfs(int v, int prev, int d) {
+void dfs(int v, int prev, int d, int& sp) {
   if (apr[v] == -1) 
     apr[v] = sp;
   nod[sp] = v; dep[sp] = d; sp++;
   for (int u : g[v]) if (u != prev) {
-    dfs(u, v, d + 1);
+    dfs(u, v, d + 1, sp);
     nod[sp] = v; dep[sp] = d; sp++;
   }
 }
@@ -89,9 +87,9 @@ int main2() {
     g[y].push_back(x);
   }
 
-  sp = 0;
+  int sp = 0;
   memset(apr, -1, sizeof(apr));
-  dfs(0, -1, 0);
+  dfs(0, -1, 0, sp);
 
   rmq.build(dep, sp);
 
