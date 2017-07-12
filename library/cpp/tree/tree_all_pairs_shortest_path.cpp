@@ -22,7 +22,7 @@ const int MAX_N = 100000 + 10;
 */
 struct RMQStatic {
   int *a;
-  int dp_min[20][MAX_N]; // [i][j] := answer index of start_pos == j, len == 2^i
+  int dp_min[20][MAX_N * 2 + 10]; // [i][j] := answer index of start_pos == j, len == 2^i
 
   int log2(int b) {return 31 - __builtin_clz(b);}
 
