@@ -8,5 +8,5 @@ int lis(int *A, int N) {
     int pos = lower_bound(dp, dp + N, A[i]) - dp;
     dp[pos] = A[i];
   }
-  return lower_bound(dp, dp + n, INF) - dp;
+  return lower_bound(dp, dp + N, INF) - dp;
 }
