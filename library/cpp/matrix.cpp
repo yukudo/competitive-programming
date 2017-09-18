@@ -8,6 +8,7 @@ template<class T>bool chmax(T&a,const T&b){return a<b?(a=b,true):false;}
 
 const ll MOD = ((ll)1e9)+7;
 
+#define SZ(v) ((int)(v).size())
 typedef vector<ll> Array;
 typedef vector<Array> Matrix;
 
@@ -20,8 +21,8 @@ Matrix identity(int N) {
 }
 
 Matrix add(const Matrix &A, const Matrix& B){
-  const int N = A.size();
-  const int M = A[0].size();
+  const int N = SZ(A);
+  const int M = SZ(A[0]);
   Matrix C(N, Array(M));
   REP(i, N) REP(j, M) {
     C[i][j] += A[i][j] + B[i][j];
@@ -31,8 +32,8 @@ Matrix add(const Matrix &A, const Matrix& B){
 }
 
 Array mul(const Matrix &A, const Array &x){
-  const int N = A.size();
-  const int M = A[0].size();
+  const int N = SZ(A);
+  const int M = SZ(A[0]);
   Array y(N);
   REP(i, N) REP(j, M)
     y[i] += A[i][j] * x[j];
@@ -41,9 +42,9 @@ Array mul(const Matrix &A, const Array &x){
 
 // A:[N,P] * B:[P,M] = C:[N,M]
 Matrix mul(const Matrix &A, const Matrix& B) {
-  const int N = A.size();
-  const int P = A[0].size();
-  const int M = B[0].size();
+  const int N = SZ(A);
+  const int P = SZ(A[0]);
+  const int M = SZ(B[0]);
   Matrix C(N, Array(M));
   REP(i, N) REP(j, M) REP(k, P) {
     C[i][j] += A[i][k] * B[k][j];
@@ -54,11 +55,11 @@ Matrix mul(const Matrix &A, const Matrix& B) {
 
 // O ( n^3 log e )
 // Matrix pow(const Matrix& A, ll e) {
-//   return e == 0 ? identity(A.size()) :
+//   return e == 0 ? identity(SZ(A)) :
 //     e % 2 == 0 ? pow( mul(A,A) , e/2 ) : mul(A, pow(A,e-1));
 // }
 Matrix pow(Matrix A, ll b) {
-  Matrix C = identity(A.size());
+  Matrix C = identity(SZ(A));
   while (b > 0) {
     if ((b & 1) == 1) C = mul(C, A);
     A = mul(A, A);
@@ -70,7 +71,7 @@ Matrix pow(Matrix A, ll b) {
 // 0 + A + A^2 + ... + A^k
 Matrix powsum(Matrix A, ll k) {
   if (k == 0) {
-    return zero(A.size());
+    return zero(SZ(A));
   } else if (k % 2 == 0) {
     Matrix P = powsum(A, k / 2);
     return add(P, mul(P, pow(A, k / 2)));
@@ -81,8 +82,8 @@ Matrix powsum(Matrix A, ll k) {
 
 
 void print(const Matrix& A){
-  REP(i, A.size()){
-    REP(j, A[0].size()){
+  REP(i, SZ(A)){
+    REP(j, SZ(A[0])){
       cout << A[i][j] << " ";
     }
     cout << endl;
@@ -101,7 +102,7 @@ const double EPS = 1e-10;
 // by Gauss-Jordan elimination
 // ( without errer handling )
 Matrix inverse(Matrix A){
-  int n = A.size();
+  int n = SZ(A);
   Matrix B = identity(n);
   REP(i, n) {
     int pivot = i;
@@ -132,7 +133,7 @@ Matrix inverse(Matrix A){
 
 // O( n^3 )
 double det(Matrix A) {
-  const int n = A.size();
+  const int n = SZ(A);
   double D = 1;
   REP(i, n) {
     int pivot = i;
@@ -149,7 +150,7 @@ double det(Matrix A) {
 }
 
 int rank(Matrix A) {
-  const int n = A.size(), m = A[0].size();
+  const int n = SZ(A), m = SZ(A[0]);
   int r = 0;
   for (int i = 0; r < n && i < m; ++i) {
     int pivot = r;
@@ -172,8 +173,8 @@ class not_regular{};
 // O(n^3). row reduction
 // 正方行列以外で動くのを確認していないし、解なしと解が無限個の区別もできない。
 Array SolveLinerEquation(Matrix A, Array b){
-  int N = A.size();
-  int M = A[0].size();
+  int N = SZ(A);
+  int M = SZ(A[0]);
   REP(i, N) {
     // 部分pivot選択
     int pivot = i;
