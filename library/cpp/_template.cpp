@@ -6,8 +6,8 @@ typedef long long ll;
 #define ALL(v) (v).begin(),(v).end()
 template<class T1,class T2>ostream& operator<<(ostream& os,const pair<T1,T2>&a){return os<<"("<<a.first<<","<<a.second<< ")";}
 template<class T>void pv(T a,T b){for(T i=a;i!=b;++i)cout<<(*i)<<" ";cout<<endl;}
-template<class T>bool chmin(T&a,const T&b){return a>b?(a=b,1):0;}
-template<class T>bool chmax(T&a,const T&b){return a<b?(a=b,1):0;}
+template<class T>void chmin(T&a,const T&b){if(a>b)a=b;}
+template<class T>void chmax(T&a,const T&b){if(a<b)a=b;}
 
 
 int nextInt() { int x; scanf("%d", &x); return x;}
