@@ -169,6 +169,81 @@ class AtCoder:
     """
     return self.get_all(url)[1]
 
+  def submit_source_code(self, contestid, taskid, lang, source_code):
+    url = 'https://beta.atcoder.jp/contests/{contestid}/submit'.format(contestid=contestid)
+
+    req = self.opener.open(url)
+    soup = BeautifulSoup(req, "html.parser")
+    csrf_token = soup.find("input", attrs={"name": "csrf_token"}).get("value")
+
+    task_select_area = soup.find('select', attrs={"id": "select-task"})
+    task_field_name = task_select_area.get("name")
+    # 文字列 "A - " で検査
+    task_number = task_select_area.find(
+        "option", text=re.compile('%s -' % taskid)).get("value")
+    language_field_name = soup.find('div', attrs={"id":"select-lang"}).get('data-name')
+    language_select_area = soup.find(
+        'div', attrs={"id": "select-lang-%s" % task_number})
+    language_number = language_select_area.find(
+        "option", text=re.compile(re.escape(lang))).get("value")
+    postdata = {
+      "csrf_token": csrf_token,
+      task_field_name: task_number,
+      language_field_name: language_number,
+      "sourceCode": source_code
+    }
+    encoded_postdata = urllib.parse.urlencode(postdata).encode('utf-8')
+    req = self.opener.open(url, encoded_postdata)
+    return True
+
+
+
+
+
+
+def read_config():
+  config_path = os.path.join(os.path.dirname(__file__), 'atcoder.config.json')
+  with open(config_path, 'r') as f:
+    jsonData = json.load(f)
+  return jsonData
+
+
+def makeio(contestid):
+  config = read_config()
+  print("try to login...", flush=True)
+  atcoder = AtCoder()
+  atcoder.login(username=config['username'], password=config['password'])
+  problems = atcoder.get_problem_list(contestid)
+
+  def write_file(path, content):
+    with open(path, 'w') as f:
+      f.write(content)
+    print('wrote: ' + path, flush=True)
+
+  for problemid, url in problems.items():
+    ios = atcoder.get_samples(url)
+    input_combined = "\n".join( [ x[0] for x in ios ] )
+    output_combined = "\n".join( [ x[1] for x in ios ] )
+    write_file('{problemid}.in.txt'.format(problemid=problemid), input_combined)
+    write_file('{problemid}.out.txt'.format(problemid=problemid), output_combined)
+
+
+def submit(taskid, contestid):
+  config = read_config()
+  source_code = open(str(taskid) + '.cpp').read()
+  print("try to login...", flush=True)
+  atcoder = AtCoder()
+  atcoder.login(username=config['username'], password=config['password'])
+  atcoder.submit_source_code(contestid, taskid, config['lang'], source_code)
+  print('https://beta.atcoder.jp/contests/{contestid}/submissions/me'.format(contestid=contestid))
+
+
+def print_usage():
+  argv0 = sys.argv[0]
+  print("usage:")
+  print("    {} makeio [contest_id]".format(argv0))
+  print("    {} submit [task_id] [contest_id]".format(argv0))
+
 
 if __name__ == '__main__':
   '''
@@ -179,12 +254,16 @@ if __name__ == '__main__':
     
     環境設定
       このファイル (atcoder.py) が置いてある場所と同じフォルダに atcoder.config.json を置く。
-      atcoder.config.json の中身は { "username":"xxxx", "password":"yyyy" } な json ファイル。
+      atcoder.config.json の中身は { "username":"xxxx", "password":"yyyy", "lang":"C++14" } な json ファイル。
         
     実行
-      $ python atcoder.py [contestid]
+    
+      $ python atcoder.py makeio [contestid]
     成功すればカレントディレクトリに *.in.txt, *.out.txt が作られる。
-
+    
+      $ python atcoder.py submit [teskid] [contestid]
+    提出する。事故りそう。
+    
     たぶん自分の環境でしか役に立たないメモ
     cygwin から windows の python3 を使うには
       $ cmd /C python atcoder.py arc086
@@ -192,28 +271,19 @@ if __name__ == '__main__':
   '''
 
   if len(sys.argv) <= 1:
-    print("usage:   {} [contest_id]".format(sys.argv[0]))
+    print_usage()
     sys.exit(1)
-  contestid = sys.argv[1]
-  atcoder = AtCoder()
-
-  config_path = os.path.join(os.path.dirname(__file__), 'atcoder.config.json')
-  with open(config_path, 'r') as f:
-    jsonData = json.load(f)
-    username = jsonData['username']
-    password = jsonData['password']
-
-  atcoder.login(username=username, password=password)
-  problems = atcoder.get_problem_list(contestid)
-
-  def write_file(path, content):
-    with open(path, 'w') as f:
-      f.write(content)
-    print('wrote: ' + path)
-
-  for problemid, url in problems.items():
-    ios = atcoder.get_samples(url)
-    input_combined = "\n".join( [ x[0] for x in ios ] )
-    output_combined = "\n".join( [ x[1] for x in ios ] )
-    write_file('{problemid}.in.txt'.format(problemid=problemid), input_combined)
-    write_file('{problemid}.out.txt'.format(problemid=problemid), output_combined)
+  subcommand = sys.argv[1]
+  if subcommand == 'makeio':
+    if len(sys.argv) <= 2:
+      print_usage()
+      sys.exit(1)
+    contestid = sys.argv[2]
+    makeio(contestid)
+  elif subcommand == 'submit':
+    if len(sys.argv) <= 3:
+      print_usage()
+      sys.exit(1)
+    taskid = sys.argv[2]
+    contestid = sys.argv[3]
+    submit(taskid, contestid)
