@@ -20,4 +20,8 @@ ll mod_inv(ll a, ll p) {
   ll inv[N];
   inv[1] = 1;
   for (int i = 2; i < N; i++) inv[i] = inv[(int) (MOD % i)] * (MOD - MOD / i) % MOD;
+  fact[0] = 1;
+  for (int i = 1; i < N; i++) fact[i] = fact[i-1] * i % MOD;
+  fact_inv[0] = 1;
+  for (int i = 1; i < N; i++) fact_inv[i] = fact_inv[i-1] * inv[i] % MOD;
 }
