@@ -230,7 +230,7 @@ def makeio(contestid):
 
 def submit(taskid, contestid):
   config = read_config()
-  source_code = open(str(taskid) + '.cpp').read()
+  source_code = open(str(taskid) + '.cpp', encoding="utf-8").read()
   print("try to login...", flush=True)
   atcoder = AtCoder()
   atcoder.login(username=config['username'], password=config['password'])
