@@ -23,16 +23,23 @@ for (int i = 0; i < MAX_N; i++) {
 }
 
 
+const int SZ = 212345;
+ll inv[SZ];
+ll fact[SZ];
+ll fact_inv[SZ];
+ll choose(int n, int r) {
+  if (n < 0 || n < r) return 0;
+  return fact[n] * fact_inv[n-r] % MOD * fact_inv[r] % MOD;
+}
 // ## 逆元の列挙 O(N)
 // これで 1 から N までの逆元が O(N) でもとまります。i * (MOD/i) = MOD - MOD%i を変形すると出てきます。
 // https://twitter.com/rng_58/status/312405554339405824
 // https://twitter.com/rng_58/status/312413291647492096
 {
-  ll inv[N];
   inv[1] = 1;
-  for (int i = 2; i < N; i++) inv[i] = inv[(int) (MOD % i)] * (MOD - MOD / i) % MOD;
+  for (int i = 2; i < SZ; i++) inv[i] = inv[(int) (MOD % i)] * (MOD - MOD / i) % MOD;
   fact[0] = 1;
-  for (int i = 1; i < N; i++) fact[i] = fact[i-1] * i % MOD;
+  for (int i = 1; i < SZ; i++) fact[i] = fact[i-1] * i % MOD;
   fact_inv[0] = 1;
-  for (int i = 1; i < N; i++) fact_inv[i] = fact_inv[i-1] * inv[i] % MOD;
+  for (int i = 1; i < SZ; i++) fact_inv[i] = fact_inv[i-1] * inv[i] % MOD;
 }
