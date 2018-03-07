@@ -23,12 +23,12 @@ for (int i = 0; i < MAX_N; i++) {
 }
 
 
-const int SZ = 212345;
+const int SZ = 312345;
 ll inv[SZ];
 ll fact[SZ];
 ll fact_inv[SZ];
 ll choose(int n, int r) {
-  if (n < 0 || n < r) return 0;
+  if (n < 0 || r < 0 || n < r) return 0;
   return fact[n] * fact_inv[n-r] % MOD * fact_inv[r] % MOD;
 }
 // ## 逆元の列挙 O(N)
