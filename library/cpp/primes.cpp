@@ -14,9 +14,7 @@ void make_primes() {
   REP(i, SIZE) if (isPrime[i]) primes.push_back(i);
 }
 
-/*
- * 約数の列挙
- */
+/* 約数の列挙 */
 vector<int> divisors(int n) {
   vector<int> ds;
   for(int d = 1; d * d <= n; d++) {
@@ -27,6 +25,20 @@ vector<int> divisors(int n) {
   }
   sort(ds.begin(), ds.end());
   return ds;
+}
+
+/* 素因数分解 */
+vector<int> factorize(int n) {
+  vector<int> ps;
+  for (int i = 0; primes[i] * primes[i] <= n; i++) {
+    while (n % primes[i] == 0) {
+      ps.push_back(primes[i]);
+      n /= primes[i];
+    }
+  }
+  if (n > 1) ps.push_back(n);
+  sort(ps.begin(), ps.end());
+  return ps;
 }
 
 /*

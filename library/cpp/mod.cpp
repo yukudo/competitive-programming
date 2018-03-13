@@ -1,3 +1,7 @@
+ll gcd(ll a, ll b) {
+  return b == 0 ? a : gcd(b, a%b);
+}
+
 ll mod_pow(ll a, ll b, ll p) {
   ll res = 1;
   while (b > 0) {
