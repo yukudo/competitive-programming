@@ -41,9 +41,7 @@ vector<int> factorize(int n) {
   return ps;
 }
 
-/*
- * n! に含まれる p の個数
- */
+/* n! に含まれる p の個数 */
 ll fact_count(ll n, ll p) {
   ll res = 0;
   while (n >= p) {
@@ -51,4 +49,19 @@ ll fact_count(ll n, ll p) {
     n /= p;
   }
   return res;
+}
+
+// オイラーのφ関数
+// 1 から n までの整数で n と互いに素なものの個数
+// n = p1^a1 * p2^a2 * ... * pk^ak と素因数分解できるとき
+// φ(n) = n*(1-1/p1)*(1-1/p2)...*(1-1/pk)
+int totient[MAX_N];
+void make_totient() {
+  REP(i, MAX_N) totient[i] = i;
+  for (int i = 2; i < MAX_N; i++) {
+    if (totient[i] == i) { // i is prime
+      --totient[i];
+      for (int j = i + i; j < MAX_N; j += i) totient[j] -= totient[j] / i;
+    }
+  }
 }
