@@ -65,3 +65,21 @@ void make_totient() {
     }
   }
 }
+
+// メビウス関数
+// meb[n] = {
+//   0 if n が素数の2乗を因数に持つ
+//  -1 if n の素因数の個数が odd
+//  +1 if n の素因数の個数が even
+// }
+int mobius[MAX_N];
+void make_mobius() {
+  for(int i = 0; i < MAX_N; i++) mobius[i] = 1;
+  for(int i = 2; i < MAX_N; i++)
+   if (isPrime[i])
+     for(int j = i; j < MAX_N; j += i)
+       if ( j / i % i == 0 ) mobius[j] = 0;
+       else mobius[j] *= -1;
+  pv(mobius, mobius + 31);
+  // 1 1 -1 -1 0 -1 1 -1 0 0 1 -1 0 -1 1 1 0 -1 0 -1 0 1 1 -1 0 0 1 0 0 -1 -1
+}
