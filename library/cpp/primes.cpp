@@ -95,7 +95,7 @@ map<int,int> mobius(int N) {
     int mu = 1, d = 1;
     REP(j, M) if (i >> j & 1) {
       mu *= -1;
-      d *= primes[j];
+      d *= ps[j];
     }
     res[d] = mu;
   }
