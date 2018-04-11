@@ -83,3 +83,21 @@ void make_mobius() {
   pv(mobius, mobius + 31);
   // 1 1 -1 -1 0 -1 1 -1 0 0 1 -1 0 -1 1 1 0 -1 0 -1 0 1 1 -1 0 0 1 0 0 -1 -1
 }
+
+
+// N の約数におけるメビウス関数の値のmapを返す。 O(√N)
+map<int,int> mobius(int N) {
+  map<int,int> res;
+  vector<int> ps = factorize(N);
+  ps.erase(unique(ALL(ps)), ps.end());
+  int M = ps.size();
+  REP(i, 1 << M) {
+    int mu = 1, d = 1;
+    REP(j, M) if (i >> j & 1) {
+      mu *= -1;
+      d *= primes[j];
+    }
+    res[d] = mu;
+  }
+  return res;
+}
