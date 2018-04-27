@@ -1,5 +1,5 @@
 struct UnionFind {
-  vector<int> data;
+  vector<int> data; // 根の場合は集合の大きさ*-1、子の場合は親の番号が入る
   UnionFind(int size) : data(size, -1) { }
   bool link(int x, int y) { //新たな併合を行うとtrue
     x = root(x); y = root(y);
