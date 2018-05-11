@@ -11,5 +11,5 @@ ll inversion_number(int *A, int N) {
     ans += bit.range(N - A[i]);
     bit.add(N - A[i], 1);
   }
-  return ans
+  return ans;
 }
