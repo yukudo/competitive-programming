@@ -8,7 +8,7 @@ import re
 import urllib.request
 from collections import OrderedDict
 from bs4 import BeautifulSoup
-
+import unicodedata
 import http.cookiejar
 
 def normalized(content):
