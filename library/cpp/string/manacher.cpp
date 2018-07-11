@@ -16,4 +16,7 @@ void manacher(const string s) {
     i += k;
     j -= k;
   }
+  
+  cout << s << endl;
+  REP(i, N) cout << palin[i]; cout << endl;
 }
