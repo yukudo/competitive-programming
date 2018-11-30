@@ -101,3 +101,19 @@ map<int,int> mobius(int N) {
   }
   return res;
 }
+
+// 1 <= i <= N && gcd(i, K) == 1 を満たす i の総和を求める ABC020D-LCM Rush
+ll solve(ll N, ll K) {
+  ll ans = 0;
+  vector<int> ps = factorize(K); sort(ALL(ps)); ps.erase(unique(ALL(ps)), ps.end());
+  int M = ps.size();
+  REP(set, 1<<M) {
+    ll p = 1, sign = 1;
+    REP(i, M) if (set >> i & 1) { p *= ps[i]; sign *= -1; }
+    ll n = N/p;
+    ans += sign * (n*(n+1)/2 % MOD) * p % MOD;
+    ans = (ans % MOD + MOD) % MOD;
+  }
+  return ans;
+}
+
