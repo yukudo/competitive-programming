@@ -12,7 +12,7 @@ void manacher(const string s) {
     while (i-j >= 0 && i+j < N && s[i-j] == s[i+j]) j++;
     palin[i] = j;
     int k = 1;
-    while (i-k >= 0 && i+k < N && k + palin[i-k] < j) { palin[i+k] = palin[i-k]; k++; }
+    while (k + palin[i-k] < j) { palin[i+k] = palin[i-k]; k++; }
     i += k;
     j -= k;
   }
