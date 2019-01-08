@@ -1,0 +1,56 @@
+
+* 高速ゼータ変換
+
+ttp://topcoder.g.hatena.ne.jp/iwiwi/20120422/1335065228
+
+ttp://d.hatena.ne.jp/todo314/20120614/1339695202
+
+ttp://d.hatena.ne.jp/simezi_tan/20130522
+
+
+包除原理の式があります。
+
+f(S) = \sum_{T \subseteq S} g(T)
+
+g(S) = \sum_{T \subseteq S} (-1)^{|S|-|T|} f(T)
+
+f か g の一方は簡単に値が求まるとして、他方を、全ての S について求めたい。
+つまり、|S|=n としたとき、int[] f = new int[1 << n] を埋めたいということ。
+
+愚直にやると、一つの S で値を求めるのに O(2^n) かかるので、全ての S についてなら O(2^n * 2^n) かかります。
+
+gからfを求めることをゼータ変換、
+fからgを求めることをメビウス変換といいます。
+どちらも O(n * 2^n) でできます。
+（高速ゼータ変換、高速メビウス変換）
+
+*** 高速ゼータ変換のコード
+
+REP(s, 1<<n) f[s] = g[s]; // g は既知である
+REP(i, n) REP(s, 1<<n) if (s >> i & 1) f[s] += f[s ^ (1<<i)];
+
+SとTを逆にしたバージョン
+f(S) = \sum_{S \subseteq T} g(T)
+
+REP(s, 1<<n) f[s] = g[s]; // g は既知である
+REP(i, n) REP(s, 1<<n) 
+    if ((s >> i & 1) == 0)
+        f[s] += f[s ^ (1<<i)];
+
+*** 高速メビウス変換のコード
+
+g(S) = \sum_{T \subseteq S} (-1)^{|S|-|T|} f(T)
+
+REP(s, 1<<n) g[s] = f[s]; // f は既知である
+REP(i, n) REP(s, 1<<n) 
+    if ((s >> i & 1) == 1)
+        g[s] -= g[s ^ (1<<i)];
+
+SとTを逆にしたバージョン
+
+g(S) = \sum_{S \subseteq T} (-1)^{|S|-|T|} f(T)
+
+REP(s, 1<<n)  g[s] = f[s]; // f は既知である
+REP(i, n) REP(s, 1<<n) 
+    if ((s >> i & 1) == 0)
+        g[s] -= g[s ^ (1<<i)];
