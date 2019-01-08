@@ -27,7 +27,9 @@ fからgを求めることをメビウス変換といいます。
 *** 高速ゼータ変換のコード
 
 REP(s, 1<<n) f[s] = g[s]; // g は既知である
-REP(i, n) REP(s, 1<<n) if (s >> i & 1) f[s] += f[s ^ (1<<i)];
+REP(i, n) REP(s, 1<<n)
+    if ((s >> i & 1) == 1)
+        f[s] += f[s ^ (1<<i)];
 
 SとTを逆にしたバージョン
 f(S) = \sum_{S \subseteq T} g(T)
