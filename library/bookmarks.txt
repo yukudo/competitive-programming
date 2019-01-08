@@ -16,3 +16,5 @@ https://www.dropbox.com/sh/arnpe0ef5wds8cv/AAAk_SECQ2Nc6SVGii3rHX6Fa?dl=0
 http://emkjp.github.io/WebTools/2d.html
 http://emkjp.github.io/WebTools/dot.html
 
+関数を入力するとグラフを書いてくれるサイト
+https://www.desmos.com/calculator
