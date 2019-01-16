@@ -9,7 +9,7 @@
 // - ある頂点の番号を k とすると左の子は 2*k, 右の子は 2*k+1, 親は k/2 
 // - 最下段の左端の番号 == 最下段の長さ == n
 const ll INF = 1LL << 61;
-struct RangeMinRangeAdd {
+struct RangeAddRangeMin {
   typedef ll Val;
   int n;
   vector<Val> segMin;
