@@ -1,7 +1,7 @@
 // 初期状態は全て 0 
-// - 区間 [l, r) を値 v で更新（ここで v は過去のどの値よりも大きい場合しか確かめていない）
+// - 区間 [l, r) を値 v で更新（この v が過去のどの値よりも大きい場合しかVerifyしていない）
 // - 範囲 [l, r) の最大値を取得
-// 遅延評価セグツリーによる実装。
+// 遅延評価セグツリーによる実装。 nikkei2019-final D - Deforestation
 struct RangeUpdateRangeMax {
   typedef ll Val;
   int n;
