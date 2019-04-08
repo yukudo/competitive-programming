@@ -1,6 +1,3 @@
-// C:\project\zzz\Typical-MM\TravelingSalesman\tester>
-// java Tester -vis -seed 2 -exec "wsl /mnt/c/project/zzz/Typical-MM/TravelingSalesman/solution/a.out" -num
-
 #include <bits/stdc++.h>
 
 using namespace std;
