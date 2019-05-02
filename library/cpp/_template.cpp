@@ -21,7 +21,10 @@ int main2() {
 }
 
 int main() {
+
+#ifdef LOCAL
   for (;!cin.eof();cin>>ws)
+#endif
     main2();
   return 0;
 }
