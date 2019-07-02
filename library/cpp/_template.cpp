@@ -12,6 +12,7 @@ template<class T>void chmax(T&a,const T&b){if(a<b)a=b;}
 
 
 int nextInt() { int x; scanf("%d", &x); return x;}
+ll nextLong() { ll x; scanf("%lld", &x); return x;}
 
 int main2() {
   int N = nextInt();
