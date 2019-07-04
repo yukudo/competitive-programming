@@ -1,16 +1,15 @@
-// Place your key bindings in this file to overwrite the defaults
 [
- {"key":"ctrl+f","command":"cursorRight","when":"editorTextFocus"}
-,{"key":"ctrl+b","command":"cursorLeft","when":"editorTextFocus"}
-,{"key":"ctrl+n","command":"cursorDown","when":"editorTextFocus"}
-,{"key":"ctrl+p","command":"cursorUp","when":"editorTextFocus"}
-,{"key":"ctrl+a","command":"cursorHome","when":"editorTextFocus"}
-,{"key":"ctrl+e","command":"cursorEnd","when":"editorTextFocus"}
-,{"key":"ctrl+d","command":"deleteRight","when":"editorTextFocus"}
-,{"key":"ctrl+h","command":"deleteLeft","when":"editorTextFocus"}
-,{"key":"ctrl+k","command":"editor.action.clipboardCutAction","when":"editorTextFocus"}
-,{"key":"ctrl+m","command":"editor.action.insertLineAfter","when":"editorTextFocus"}
-,{"key":"alt+a","command":"editor.action.selectAll","when":"editorTextFocus"}
-,{"key":"alt+f","command":"actions.find","when":"editorTextFocus"}
-// ,{"key":"ctrl+s","command":"workbench.action.tasks.runTask","args":"g++","when":"editorTextFocus && editorLangId==cpp"}
+    {"key":"ctrl+f","command":"cursorRight","when":"editorTextFocus"}
+   ,{"key":"ctrl+b","command":"cursorLeft","when":"editorTextFocus"}
+   ,{"key":"ctrl+n","command":"cursorDown","when":"editorTextFocus"}
+   ,{"key":"ctrl+p","command":"cursorUp","when":"editorTextFocus"}
+   ,{"key":"ctrl+a","command":"cursorHome","when":"editorTextFocus"}
+   ,{"key":"ctrl+e","command":"cursorEnd","when":"editorTextFocus"}
+   ,{"key":"ctrl+d","command":"deleteRight","when":"editorTextFocus"}
+   ,{"key":"ctrl+h","command":"deleteLeft","when":"editorTextFocus"}
+   ,{"key":"ctrl+k","command":"editor.action.clipboardCutAction","when":"editorTextFocus"}
+   ,{"key":"ctrl+m","command":"editor.action.insertLineAfter","when":"editorTextFocus"}
+   ,{"key":"alt+a","command":"editor.action.selectAll","when":"editorTextFocus"}
+   ,{"key":"alt+f","command":"actions.find","when":"editorTextFocus"}
+   ,{"key":"ctrl+s","command":"workbench.action.tasks.runTask","args":"g++-syntax-check","when":"editorTextFocus && editorLangId==cpp"}
 ]
