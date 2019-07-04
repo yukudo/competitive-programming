@@ -1,22 +1,39 @@
 {
-    "version": "0.1.0",
-    "command": "g++",
-    "args": ["-fsyntax-only", "-std=c++11", "-Wall", "-Winit-self", "${relativeFile}" ],
-    "isShellCommand": true,
-    "showOutput": "never",
-    "suppressTaskName": true,
-    "taskName": "g++-syntax-check",
-    "isBuildCommand": false,
-    "problemMatcher": {
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "g++-syntax-check",
+      "type": "shell",
+      "command": "bash",
+      // See https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
+      "args": [
+        "-c",
+        "g++ -fsyntax-only -std=c++14 -Wall -Wextra ${relativeFile}"
+      ],
+      "presentation": {
+        "reveal": "never"
+      },
+      "problemMatcher": {
         "owner": "cpp",
-        "fileLocation": ["relative", "${workspaceRoot}"],
+        "fileLocation": [
+          "relative",
+          "${workspaceRoot}"
+        ],
         "pattern": {
-            "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-            "file": 1,
-            "line": 2,
-            "column": 3,
-            "severity": 4,
-            "message": 5
+          "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
         }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
     }
+  ]
 }
