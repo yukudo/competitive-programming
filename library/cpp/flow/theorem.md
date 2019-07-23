@@ -68,6 +68,8 @@ X ⊆ V が G の安定集合⇔ X\V が G の点カバー
 ### 例題
 
 * JOI2015/2016 春季トレーニング合宿 Day1 マトリョーシカ人形
+* ABC134E Sequence Decomposing
+    * 数列のLongest Increasing Subsequenceを考えるとき狭義増加列がchainで広義減少列がantichainであるという話
 
 --------
 
