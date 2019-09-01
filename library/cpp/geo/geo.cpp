@@ -17,10 +17,10 @@ namespace std {
 }
 
 // 偏角でソート
-// atan2使う方法が定番。（det(a,b)を使うと(0,0)の扱いが微妙だから？） 
+// atan2使う方法が定番。（外積を使うと(0,0)の扱いが微妙だから？） 
 namespace std {
   bool operator < (const P& a, const P& b) {
-    return atan2(real(a), imag(a)) < atan2(real(b), imag(b));
+    return atan2(imag(a), real(a)) < atan2(imag(b), real(b));
   }
 }
 
