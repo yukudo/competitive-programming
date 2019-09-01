@@ -16,6 +16,14 @@ namespace std {
   }
 }
 
+// 偏角でソート
+// atan2使う方法が定番。（det(a,b)を使うと(0,0)の扱いが微妙だから？） 
+namespace std {
+  bool operator < (const P& a, const P& b) {
+    return atan2(real(a), imag(a)) < atan2(real(b), imag(b));
+  }
+}
+
 int ccw(P a, P b, P c) {
   // return signum(crs(b - a, c - a));
   b -= a; c -= a;
