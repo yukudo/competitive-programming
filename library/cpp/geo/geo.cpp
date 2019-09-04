@@ -17,11 +17,15 @@ namespace std {
 }
 
 // 偏角でソート
-// atan2使う方法が定番。（外積を使うと(0,0)の扱いが微妙だから？） 
+// 方法1. atan2使う方法。誤差に注意。 
+// 方法2. 象限で分けたあと外積を使う方法。(0,0)の扱いに注意。
 namespace std {
   bool operator < (const P& a, const P& b) {
     return atan2(imag(a), real(a)) < atan2(imag(b), real(b));
   }
+  // bool operator < (const P& a, const P& b) {
+  //   TODO 外積を使う偏角ソートを書く
+  // }
 }
 
 int ccw(P a, P b, P c) {
