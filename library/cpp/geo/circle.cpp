@@ -1,15 +1,57 @@
-#include <complex>
-
-typedef long double D;
-typedef complex<D> P;
-const D PI = acos(-1.0);
-const D EPS = 1e-10;
-
 struct C : public P {
   D r;
   C() {}
-  C(const P &p,D r):P(p),r(r){}
+  C(const P &p, D r):P(p),r(r){}
 };
+
+// 円cと点pの接点をvectorで返す
+vector<P> contactCP(C c, P p){
+  vector<P> ret;
+  D dist2 = (p - c).norm();
+  D r2 = c.r * c.r;
+  if( abs( r2 - dist2 ) < EPS ){ // 点が円周上にある
+    ret.push_back( p );
+    return ret;
+  }
+  if( r2 > dist2 ){ //点が円の内部にある
+    return ret;
+  }
+  P q1 = (p - c) * ( r2 / dist2 );
+  P q2 = (p - c) * P(0, 1) * (c.r * sqrt(dist2 - r2) / dist2);
+  ret.push_back(c + q1 + q2);
+  ret.push_back(c + q1 - q2);
+  return ret;
+}
+
+// 2円の共通接線
+vector<P> contactCC(const C& c1, const C& c2){
+  vector<P> res;
+  if (abs(c1.r - c2.r) < EPS) { // 外接線が平行
+    P dir = c2 - c1;
+    dir = dir * c1.r / dir.abs() * P(0,1);
+    res.push_back(c1 + dir);
+    res.push_back(c2 + dir);
+    res.push_back(c1 - dir);
+    res.push_back(c2 - dir);
+  } else {
+    P p = (c1 * -c2.r + c2 * c1.r) / (c1.r - c2.r);
+    vector<P> ps = contactCP(c1, p);
+    vector<P> qs = contactCP(c2, p);
+    for (int i = 0; i < (int)ps.size() && i < (int)qs.size(); i++) {
+      res.push_back(ps[i]);
+      res.push_back(qs[i]);
+    }
+  }
+  //内接線
+  P p = (c1 * c2.r + c2 * c1.r) / (c1.r + c2.r);
+  vector<P> ps = contactCP(c1, p);
+  vector<P> qs = contactCP(c2, p);
+  for (int i = 0; i < (int)ps.size() && i < (int)qs.size(); i++) {
+    res.push_back(ps[i]);
+    res.push_back(qs[i]);
+  }
+  return res;
+}
 
 // 2円の共通部分の面積
 D ccArea(const C& c1, const C& c2) {

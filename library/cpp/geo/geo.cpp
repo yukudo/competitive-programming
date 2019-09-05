@@ -1,10 +1,7 @@
-#include <complex>
-using namespace std;
-
 typedef long double D;
 const D PI = acos(-1.0);
 const D EPS = 1e-10;
-class P { public:
+struct P {
   D x, y;
   P(D x=0, D y=0) : x(x), y(y) {}
 
