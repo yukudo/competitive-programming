@@ -134,7 +134,6 @@ bool isConvex(const vector<P> &ps) {
   return m != 3;
 }
 
-// 凸包
 /** 多角形と点の内外判定。点pをx軸方向に無限に伸ばした半直線と多角形の辺が交差する回数が、奇数ならば内、偶数ならば外。*/
 enum { OUT, IN, ON };
 int contains(const vector<P>& ps, const P& p) {
@@ -150,6 +149,7 @@ int contains(const vector<P>& ps, const P& p) {
   return in ? IN : OUT;
 }
 
+// 凸包
 // 凸包上の点も拾う場合は2箇所を <= 0 から == -1 に変える http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A
 vector<P> convexHull(vector<P> ps){
   int N = (int)ps.size();
