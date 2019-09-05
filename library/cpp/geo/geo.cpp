@@ -183,3 +183,17 @@ D convexDiamiter(const vector<P>& ps){
   } while( si != i || sj != j );
   return sqrt(max_dist);
 }
+// 凸多角形をある直線で切断し、左側を残す。
+// 凸多角形は半時計回りに与えられていること
+vector<P> convexCut(const vector<P>& ps, const P& p1, const P& p2) {
+  vector<P> ret;
+  int N = ps.size();
+  REP(i,N){
+      P a = ps[i];
+      P b = ps[(i+1)%N];
+      if( ccw(p1, p2, a) != -1 ) ret.push_back(a);
+      if( ccw(p1, p2, a) * ccw(p1, p2, b) == -1 )
+          ret.push_back( intersectionLL(a,b,p1,p2) );
+  }
+  return ret;
+}
