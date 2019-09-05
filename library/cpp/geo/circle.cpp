@@ -67,3 +67,19 @@ D ccArea(const C& c1, const C& c2) {
   };
   return cut(c1.r, c2.r, d) + cut(c2.r, c1.r, d);
 }
+
+// 直線abと円cの交点をvectorで返す
+vector<P> intersectionLC(const P& a, const P& b, const C& c){
+  double dist = distLP(a,b,c);
+  vector<P> ret;
+  if( abs(dist - c.r) < EPS ) {
+    ret.push_back( footOfLP(a,b,c) );
+  } else if( dist < c.r ) {
+    P m = footOfLP(a,b,c);
+    P u = (b-a) / (b-a).abs();
+    double t = sqrt( c.r * c.r - dist * dist );
+    ret.push_back( m + t * u );
+    ret.push_back( m - t * u );
+  }
+  return ret;
+}

@@ -105,6 +105,9 @@ P intersectionLL(const P& a1, const P& a2, const P& b1, const P& b2){
   P a = a2 - a1; P b = b2 - b1;
   return a1 + a * crs(b, b1-a1) / crs(b, a);
 }
+D distLP(const P& a, const P& b, const P& c) {
+  return abs(crs(b-a, c-a)) / (b-a).abs();
+}
 D distSP(const P& a, const P& b, const P& c) {
   if (dot(b-a, c-a) < EPS) return (c-a).abs(); // c a--b
   if (dot(a-b, c-b) < EPS) return (c-b).abs(); // a--b c
