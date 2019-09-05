@@ -165,20 +165,20 @@ vector<P> convexHull(vector<P> ps){
 }
 
 // 凸包の直径
-D convexDiamiter(vector<P> ps){
+D convexDiamiter(const vector<P>& ps){
   int N = (int)ps.size();
   int i = 0, j = 0;
   for (int k = 1; k < N; k++) {
-    if (imag(ps[k]) > imag(ps[i])) i = k;
-    if (imag(ps[k]) < imag(ps[j])) j = k;
+    if (ps[k].y > ps[i].y) i = k;
+    if (ps[k].y < ps[j].y) j = k;
   }
   int si = i, sj = j;
-  D max_dist = norm(ps[i] - ps[j]);
+  D max_dist = (ps[i] - ps[j]).norm();
   do {
     if (crs(ps[(i+1)%N] - ps[i], ps[(j+1)%N] - ps[j]) >= 0) j = (j+1) % N;
     else i = (i+1) % N;
-    if (norm(ps[i] - ps[j]) > max_dist) {
-      max_dist = norm(ps[i] - ps[j]);
+    if ((ps[i] - ps[j]).norm() > max_dist) {
+      max_dist = (ps[i] - ps[j]).norm();
     }
   } while( si != i || sj != j );
   return sqrt(max_dist);
