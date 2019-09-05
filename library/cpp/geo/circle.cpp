@@ -83,3 +83,28 @@ vector<P> intersectionLC(const P& a, const P& b, const C& c){
   }
   return ret;
 }
+// 2円の交点
+vector<P> intersectionCC(const C& c1, const C& c2) {
+  vector<P> ret;
+  D d = (c1 - c2).abs();
+  P diff = (c2 - c1) / d;
+  if( c1.r + c2.r < d - EPS ) {                        // 離れていて交点0
+
+  } else if( d < EPS && abs(c1.r - c2.r) < EPS ) {     // 2円が重なる
+
+  } else if( abs( c1.r + c2.r - d ) < EPS ) {          // 外側で1点で接する
+    ret.push_back( c1 + diff * c1.r );
+  } else if( abs( c1.r - c2.r ) > d + EPS ) {          // 内側に含む。交点0
+
+  } else if( abs( abs( c1.r - c2.r ) - d ) < EPS) {    // 内側で1点で接する
+    ret.push_back( c1 + diff * c1.r );
+  } else {                                            // 2点で交わる
+//     assert( d < c1.r + c2.r );
+    D rc = (d*d + c1.r*c1.r - c2.r*c2.r) / (2*d);
+    D rs = sqrt(c1.r*c1.r - rc*rc);
+
+    ret.push_back( c1 + diff * P(rc, -rs) );
+    ret.push_back( c1 + diff * P(rc, rs) );
+  }
+  return ret;
+}
