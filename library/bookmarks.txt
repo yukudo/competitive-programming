@@ -25,5 +25,7 @@ https://www.desmos.com/calculator
 ## マラソンマッチ
 
 焼きなまし
+http://shindannin.hatenadiary.com/entry/20121224/1356364040
+http://www.colun.net/archives/774
 https://github.com/hakomo/Simulated-Annealing-Techniques
 
