@@ -1,4 +1,4 @@
-typedef long double D;
+using D = long double;
 const D PI = acos(-1.0);
 const D EPS = 1e-10;
 struct P {

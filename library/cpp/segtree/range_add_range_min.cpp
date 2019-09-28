@@ -1,16 +1,16 @@
 // いわゆる Starry Sky Tree
 // その区間に一様に足されている値を持つ実装
-// 
+//
 // [               1              ]
 // [       2      ][       3      ]
 // [   4  ][   5  ][   6  ][   7  ]
 // [ 8][ 9][10][11][12][13][14][15]
 // - root が 1 の完全二分木
-// - ある頂点の番号を k とすると左の子は 2*k, 右の子は 2*k+1, 親は k/2 
+// - ある頂点の番号を k とすると左の子は 2*k, 右の子は 2*k+1, 親は k/2
 // - 最下段の左端の番号 == 最下段の長さ == n
 const ll INF = 1LL << 61;
 struct RangeAddRangeMin {
-  typedef ll Val;
+  using Val = ll;
   int n;
   vector<Val> segMin;
   vector<Val> segAdd; // 区間に一様に足されている値

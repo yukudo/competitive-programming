@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
+using ll = long long;
 #define REP(i,n) for(int i=0,_n=(int)(n);i<_n;++i)
 #define ALL(v) (v).begin(),(v).end()
 template<class T>void pv(T a,T b){for(T i=a;i!=b;++i)cout<<(*i)<<" ";cout<<endl;}
@@ -16,7 +16,7 @@ void make_primes() {
   if (primes.size() > 0) return;
   memset(isPrime, true, sizeof(isPrime));
   isPrime[0] = isPrime[1] = false;
-  for (int i = 2; i * i < SIZE; i++) 
+  for (int i = 2; i * i < SIZE; i++)
     if (isPrime[i])
       for (int j = i * i; j < SIZE; j += i)
         isPrime[j] = false;
@@ -90,13 +90,13 @@ ll fast(int N, int M) {
   return ans * mod_inv(N, MOD) % MOD;
 }
 
-// 
+//
 // 以下のコードは愚直にやるとO(n)かかる
 // for (int k = 0; k < n; k++) ans += f(gcd(k, n));
-// 
+//
 // gcd(k, n) = d となる k が何個あるかを d ごとに求めて一度だけ f() を呼び出せば速い。
 // この回数はオイラーの totient 関数を用いて φ(n/d) である。
-// 
+//
 
 int main() {
   make_primes();

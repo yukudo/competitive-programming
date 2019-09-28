@@ -1,6 +1,6 @@
 const int MAX_V = 20000+5;
-typedef int CAP;
-typedef int COST;
+using CAP = int;
+using COST = int;
 const int INF = (int)1e9;
 
 struct State {

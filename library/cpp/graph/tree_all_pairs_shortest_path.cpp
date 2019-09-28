@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
+using ll = long long;
 #define REP(i,n) for(int i=0,_n=(int)(n);i<_n;++i)
 #define ALL(v) (v).begin(),(v).end()
 template<class T1,class T2>ostream& operator<<(ostream& os,const pair<T1,T2>&a){return os<<"("<<a.first<<","<<a.second<< ")";}
@@ -59,7 +59,7 @@ int dep[MAX_N * 2 + 10]; // dfsして i 番目に訪問した頂点の深さ
 int apr[MAX_N]; // nod において頂点 v が始めに出現する添字
 
 void dfs(int v, int prev, int d, int& sp) {
-  if (apr[v] == -1) 
+  if (apr[v] == -1)
     apr[v] = sp;
   nod[sp] = v; dep[sp] = d; sp++;
   for (int u : g[v]) if (u != prev) {

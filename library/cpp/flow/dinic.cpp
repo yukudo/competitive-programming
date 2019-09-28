@@ -1,5 +1,5 @@
 const int MAX_V = 20000+5;
-typedef int CAP;
+using CAP = int;
 const CAP INF = (int)1e9;
 
 struct Edge{ int dst; CAP cap; int rev; };

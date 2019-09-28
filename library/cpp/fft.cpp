@@ -4,8 +4,8 @@
 
 const double PI2 = 2*acos(-1);
 #define SZ(v) ((int)(v).size())
-typedef complex<double> C;
- 
+using C = complex<double>;
+
 void dft(vector<C>& f, const bool inv) {
   const int N = SZ(f); // N must be power of 2.
   if (N == 1) return;
@@ -21,7 +21,7 @@ void dft(vector<C>& f, const bool inv) {
     w *= w1;
   }
 }
- 
+
 vector<C> mul(vector<C> g, vector<C> h) {
   int N = 1;
   while (N < SZ(g) + SZ(h) - 1) N *= 2;
@@ -35,12 +35,12 @@ vector<C> mul(vector<C> g, vector<C> h) {
   REP(i, N) ff[i] /= N;
   return ff;
 }
- 
+
 int main2() {
   int N; cin >> N;
   vector<C> A(N+1), B(N+1);
   REP(i, N) cin >> A[i+1] >> B[i+1];
- 
+
   vector<C> res = mul(A, B);
   for (int i = 1; i <= 2*N; i++) {
     printf("%d\n", (int)round(res[i].real()));

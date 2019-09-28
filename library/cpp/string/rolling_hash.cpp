@@ -1,5 +1,5 @@
 struct RollingHash {
-  typedef tuple<ll,ll,ll> HashType;
+  using HashType = tuple<ll,ll,ll>;
 
   const ll mod1 = 999999893;
   const ll mod2 = 999999929;

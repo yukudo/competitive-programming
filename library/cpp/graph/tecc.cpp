@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
+using ll = long long;
 #define REP(i,n) for(int i=0,_n=(int)(n);i<_n;++i)
 #define ALL(v) (v).begin(),(v).end()
 #define CLR(t,v) memset(t,(v),sizeof(t))

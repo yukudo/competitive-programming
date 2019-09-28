@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
+using ll = long long;
 #define REP(i,n) for(int i=0,_n=(int)(n);i<_n;++i)
 template<class T>bool chmin(T&a,const T&b){return a>b?(a=b,true):false;}
 template<class T>bool chmax(T&a,const T&b){return a<b?(a=b,true):false;}
@@ -9,8 +9,8 @@ template<class T>bool chmax(T&a,const T&b){return a<b?(a=b,true):false;}
 const ll MOD = ((ll)1e9)+7;
 
 #define SZ(v) ((int)(v).size())
-typedef vector<ll> Array;
-typedef vector<Array> Matrix;
+using Array = vector<ll>;
+using Matrix = vector<Array>;
 
 Matrix zero(int N){ return Matrix(N, Array(N)); }
 
