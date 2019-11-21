@@ -10,13 +10,18 @@ https://maspypy.com/atcoder-c-%e6%93%ac%e4%ba%8c%e7%ad%89%e8%be%ba%e4%b8%89%e8%a
 def f(D):
 	print("ans = 0")
 	for x in range(0, D+1):
-		s = 'f({})'.format(x)
+		s = 'f({})*('.format(x)
+		first = True
 		p = 1
 		for a in range(0, D+1):
 			if a != x:
-				s += "*(n-" + str(a) + ")"
+				if first:
+					first = False
+				else:
+					s += '*'
+				s += "(n-" + str(a) + ")"
 				p *= (x - a)
-		s += '//('+ str(p) +')'
+		s += '//('+ str(p) +'))'
 		print("ans += " + s)
 	print("ans %= MOD")
 	print("----------------")
