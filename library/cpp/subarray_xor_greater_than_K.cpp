@@ -70,6 +70,10 @@ int naive(int N, int K) {
 
 // ECR012 E. Beautiful Subarrays
 // http://codeforces.com/contest/665/problem/E
+// 問題:
+// 数列 A = { a1, ... , aN } が与えられる。連続する部分列のうち部分列を xor したものが K 以上であるようなもの個数を数えよ。
+// 累積和を取って S とすると、 S[i] xor S[j] ≧ K かつ i < j なる組 (i, j) を数える問題となる。
+// S[i] を Trie に入れておくと j を固定したとき i < j かつ S[i] xor S[j] >= K であるような i を、Trie をたどりながら数えられる。
 
 int main2() {
   int N = nextInt();
