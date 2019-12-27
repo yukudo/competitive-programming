@@ -8,12 +8,11 @@ struct mint {
   mint operator-(const mint a) const {mint res(*this);return res-=a;}
   mint operator*(const mint a) const {mint res(*this);return res*=a;}
   mint pow(ll b) const {
-  	mint res = 1;
-    mint a = *this;
+    mint res(1), a(*this);
     while (b) {
-    	if (b & 1) res *= a;
-    	a *= a;
-    	b >>= 1;
+      if (b & 1) res *= a;
+      a *= a;
+      b >>= 1;
     }
     return res;
   }
