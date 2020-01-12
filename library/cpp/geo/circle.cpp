@@ -108,3 +108,14 @@ vector<P> intersectionCC(const C& c1, const C& c2) {
   }
   return ret;
 }
+
+// 3点を通る円
+C circleThreePoints(P a, P b, P c){
+  b-=a, c-=a;
+  P x = P(b.x, c.x);
+  P y = P(b.y, c.y);
+  P p = P(b.norm(), c.norm())/2.0;
+  // if (abs(crs(x, y)) < EPS) throw 1;
+  P center = P(crs(p,y), crs(x,p))/crs(x,y) + a;
+  return C( center, (center - a).abs() );
+}
