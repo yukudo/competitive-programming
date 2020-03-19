@@ -20,3 +20,43 @@ void manacher(const string s) {
   cout << s << endl;
   REP(i, N) cout << palin[i]; cout << endl;
 }
+
+// 偶数長の回文を検出するためには文字の間にダミーの文字を挟む。
+// 全ての極大な回文を列挙する使用例。
+void enumerate(const string s) {
+  const int N = s.size();
+  string SS;
+  REP(i, N) {
+    SS.push_back('.');
+    SS.push_back(s[i]);
+  }
+  SS.push_back('.');
+  manacher(SS);
+  cout << s << endl;
+  for (int x = 1; x < 2*N; x++) {
+    int a = ((x - palin[x] + 1) + 1) / 2;
+    int b = ((x + palin[x] - 1) + 1) / 2;
+    cout << x << " " << s.substr(a, b - a) << endl;
+  }
+}
+// enumerate("abaaababa");
+// .a.b.a.a.a.b.a.b.a.
+// 1214123832141614121
+// abaaababa
+// 1 a
+// 2
+// 3 aba
+// 4
+// 5 a
+// 6 aa
+// 7 abaaaba
+// 8 aa
+// 9 a
+// 10
+// 11 aba
+// 12
+// 13 ababa
+// 14
+// 15 aba
+// 16
+// 17 a
