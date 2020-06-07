@@ -21,3 +21,4 @@ struct mint {
   mint& operator/=(const mint a) {return (*this) *= a.inv();}
   mint operator/(const mint a) const {mint res(*this);return res/=a;}
 };
+ostream& operator<<(ostream& os, const mint& a) {os << a.x; return os;}
