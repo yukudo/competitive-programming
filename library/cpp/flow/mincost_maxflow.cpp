@@ -27,7 +27,7 @@ void addedge(int u, int v, CAP cap, COST cost) {
 COST mincost_maxflow(int s, int t, CAP flow) {
   vector<int> vs;
   REP(i, MAX_V) if (adj[i].size()) vs.push_back(i);
-  int res = 0;
+  COST res = 0;
   for (int v : vs) potential[v] = 0;
   while (flow > 0) {
     for (int v : vs) dist[v] = INF;
