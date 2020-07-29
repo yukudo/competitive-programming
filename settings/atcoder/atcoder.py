@@ -48,7 +48,7 @@ class AtCoder:
       urllib.request.HTTPCookieProcessor(self.cj))
 
   def login(self, username=None, password=None):
-    req = self.opener.open('https://beta.atcoder.jp/login')
+    req = self.opener.open('https://atcoder.jp/login')
     soup = BeautifulSoup(req,'html.parser')
     tags = soup.select('input[name=csrf_token]')
     csrf_token = tags[0].get('value') if len(tags) >= 1 else None
@@ -68,7 +68,7 @@ class AtCoder:
     }
     encoded_postdata = urllib.parse.urlencode(postdata).encode('utf-8')
     req = self.opener.open(
-      'https://beta.atcoder.jp/login', encoded_postdata)
+      'https://atcoder.jp/login', encoded_postdata)
     html = req.read().decode('utf-8')
     if html.find("<h2>ログイン</h2>") != -1 or html.find('<h2>Sign In</h2>') != -1:
       raise LoginError
@@ -77,18 +77,18 @@ class AtCoder:
   def get_problem_list(self, contestid):
     """
         入力
-            contestid#str : https://beta.atcoder.jp/contests/***/)だったら***の部分
+            contestid#str : https://atcoder.jp/contests/***/)だったら***の部分
         出力
             #OrderedDict<str:str> : 問題番号("A","B","C",..)→URLのディクショナリ
     """
     req = self.opener.open(
-      'https://beta.atcoder.jp/contests/{contestid}/tasks'.format(contestid=contestid)
+      'https://atcoder.jp/contests/{contestid}/tasks'.format(contestid=contestid)
     )
     soup = BeautifulSoup(req, "html.parser")
 
     res = OrderedDict()
     for tag in soup.select('div.col-sm-12 table td a')[0::3]:
-      res[tag.text] = 'https://beta.atcoder.jp' + tag.get("href")
+      res[tag.text] = 'https://atcoder.jp' + tag.get("href")
     return res
 
   def get_all(self, url):
@@ -132,7 +132,6 @@ class AtCoder:
 
     def detection_algorithm2():
       pretags = soup.select('pre')
-
       sample_tags = pretags[1:]
       input_tags = sample_tags[0::2]
       output_tags = sample_tags[1::2]
@@ -170,7 +169,7 @@ class AtCoder:
     return self.get_all(url)[1]
 
   def submit_source_code(self, contestid, taskid, lang, source_code):
-    url = 'https://beta.atcoder.jp/contests/{contestid}/submit'.format(contestid=contestid)
+    url = 'https://atcoder.jp/contests/{contestid}/submit'.format(contestid=contestid)
 
     req = self.opener.open(url)
     soup = BeautifulSoup(req, "html.parser")
@@ -235,7 +234,7 @@ def submit(taskid, contestid):
   atcoder = AtCoder()
   atcoder.login(username=config['username'], password=config['password'])
   atcoder.submit_source_code(contestid, taskid, config['lang'], source_code)
-  print('https://beta.atcoder.jp/contests/{contestid}/submissions/me'.format(contestid=contestid))
+  print('https://atcoder.jp/contests/{contestid}/submissions/me'.format(contestid=contestid))
 
 
 def print_usage():
