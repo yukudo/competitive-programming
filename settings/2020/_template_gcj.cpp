@@ -6,9 +6,13 @@ typedef long long ll;
 #define ALL(v) (v).begin(),(v).end()
 #define CLR(t,v) memset(t,(v),sizeof(t))
 template<class T1,class T2>ostream& operator<<(ostream& os,const pair<T1,T2>&a){return os<<"("<<a.first<<","<<a.second<< ")";}
-template<class T>void pv(T a,T b){for(T i=a;i!=b;++i)cout<<(*i)<<" ";cout<<endl;}
 template<class T>void chmin(T&a,const T&b){if(a>b)a=b;}
 template<class T>void chmax(T&a,const T&b){if(a<b)a=b;}
+#ifdef LOCAL
+template<class T>void pv(T a,T b){for(T i=a;i!=b;++i)cerr<<(*i)<<" ";cerr<<endl;}
+#else
+template<class T>void pv(T a,T b){}
+#endif
 
 
 int main2() {
