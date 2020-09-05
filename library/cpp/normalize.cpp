@@ -14,5 +14,6 @@ vector<int> normalize(const vector<ll> v) {
     res[t[i].second] = r;
     // rev[r] = t[i].first;
   }
+  // rev.erase(rev.begin() + r + 1, rev.end());
   return res;
 }
