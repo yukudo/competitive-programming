@@ -2,6 +2,13 @@ ll gcd(ll a, ll b) {
   return b == 0 ? a : gcd(b, a%b);
 }
 
+ll ext_gcd(ll a, ll b, ll& x, ll& y) { // get ax+by = gcd(a,b)
+  if (b == 0) { x = 1; y = 0; return a; }
+  ll g = ext_gcd(b, a%b, y, x);
+  y -= a/b*x;
+  return g;
+}
+
 ll mod_pow(ll a, ll b, ll p) {
   ll res = 1;
   while (b > 0) {
