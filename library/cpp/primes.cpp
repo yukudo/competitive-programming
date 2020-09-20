@@ -1,6 +1,6 @@
 /* エラトステネスの篩 */
 const int SIZE = 1000000;
-vector<int> primes;
+vector<ll> primes;
 bool isPrime[SIZE];
 
 void make_primes() {
