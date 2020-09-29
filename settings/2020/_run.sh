@@ -10,7 +10,7 @@
 #     _run.sh B -stress -d => g++ B.cpp && ./a < B.stress.in.txt | diff -b -B - B.stress.out.txt
 #
 
-readonly COMPILE_CMD='c++11oj'
+readonly COMPILE_CMD='c++oj'
 
 function doit() {
   cmd="$1"
@@ -20,7 +20,7 @@ function doit() {
 
 # 自分の環境専用だからいいのだ
 shopt -s expand_aliases
-alias c++11oj='g++ -std=c++14 -O2 -Wall -Wno-unused-result -Winit-self -DLOCAL=1'
+alias c++oj='g++ -std=c++14 -O2 -Wall -Wno-unused-result -Winit-self -I . -DLOCAL=1'
 
 diff_flg=0
 submit_flg=0
@@ -42,7 +42,7 @@ if [[ $submit_flg = "1" ]]; then
   exit $?;
 fi
 
-alias c++11oj 1>&2
+alias c++oj 1>&2
 
 source_file=${task_id}.cpp
 input_file=${task_id}.in.txt

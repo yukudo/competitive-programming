@@ -10,7 +10,7 @@
       // See https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
       "args": [
         "-c",
-        "g++ -fsyntax-only -std=c++14 -Wall -Wextra ${relativeFile}"
+        "g++ -fsyntax-only -std=c++14 -Wall -Wextra -I . ${relativeFile}"
       ],
       "presentation": {
         "reveal": "never"

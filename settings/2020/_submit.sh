@@ -13,7 +13,7 @@ fi
 echo -n "Are you sure you wnat to submit '$taskid' to '$contestid'? [y/N]: "
 read confirm
 if [[ "$confirm" == "y" ]] || [[ "$confirm" == "Y" ]] ; then
-  python3 atcoder/atcoder.py submit $taskid $contestid
+  python3 atcoder_tool/atcoder.py submit $taskid $contestid
 else
   echo ""
 fi
