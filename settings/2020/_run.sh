@@ -68,3 +68,5 @@ if [[ $diff_flg = "0" ]]; then
 else
   doit "$COMPILE_CMD ${source_file} && time ./a.out < ${input_file} | diff -b -B - ${output_file}"
 fi
+
+doit "python3 atcoder/expander.py ${source_file} -c > _combined.cpp 2>/dev/null"
