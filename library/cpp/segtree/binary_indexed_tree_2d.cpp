@@ -1,5 +1,6 @@
 // 点に加算、範囲の和
 // 利用するときは 0-indexed、内部的には1-indexed
+// 閉区間なので注意
 using Val = ll;
 const int SIZE = 5005;
 Val tree[SIZE+1][SIZE+1];
@@ -22,9 +23,10 @@ Val sum(int x, int y) {
   }
   return res;
 }
+// return sum of rectangle [(x0,y0), (x1,y1)] inclusive
 Val get(int x0, int y0, int x1, int y1) {
-  return sum(x1, y1) - sum(x1, y0) - sum(x0, y1) + sum(x0, y0);
+  return sum(x1, y1) - sum(x1, y0-1) - sum(x0-1, y1) + sum(x0-1, y0-1);
 }
 Val get(int x, int y) {
-  return get(x-1, y-1, x, y);
+  return get(x, y, x, y);
 }
