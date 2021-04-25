@@ -9,6 +9,13 @@ ll ext_gcd(ll a, ll b, ll& x, ll& y) { // get ax+by = gcd(a,b)
   return g;
 }
 
+// m が素数でない、かつ、 gcd(a,m)==1 のとき 1/a を返す
+ll mod_inv(ll a, ll m) {
+  ll x, y;
+  ext_gcd(a, m, x, y);
+  return (x % m + m) % m;
+}
+
 ll mod_pow(ll a, ll b, ll p) {
   ll res = 1;
   while (b > 0) {
