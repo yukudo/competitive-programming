@@ -14,7 +14,7 @@ struct P {
 
   D norm() const { return x*x + y*y; }
   D abs() const { return sqrt(norm()); }
-  D arg() const { return atan2(y, x); }
+  D arg() const { return atan2(y, x); } // [-PI, PI]
   bool isZero() const { return std::abs(x) < EPS && std::abs(y) < EPS; }
   /** 象限 */
   int orth() const { return y >= 0 ? (x >= 0 ? 1 : 2) : (x < 0 ? 3 : 4); }
@@ -47,6 +47,15 @@ bool operator<(const P& a, const P& b) {
 //   if (a.orth() != b.orth()) return a.orth() < b.orth();
 //   return crs(a, b) > 0;
 // }
+
+/** ベクトルaとベクトルbのなす角 [0, PI] */
+D angle(const P& a, const P& b) {
+  D t1 = a.arg();
+  D t2 = b.arg();
+  if (t1 < 0) t1 += 2*PI;
+  if (t2 < 0) t2 += 2*PI;
+  return min(abs(t1 - t2), 2*PI - abs(t1 - t2));
+}
 /** ベクトルpをベクトルbに射影したベクトル */
 P proj(const P& p, const P& b) {
   P t = b * dot(p, b);
