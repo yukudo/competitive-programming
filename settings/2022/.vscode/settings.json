@@ -1,0 +1,11 @@
+{
+  "editor.tabSize": 2,
+  "workbench.colorTheme": "Monokai",
+  "[cpp]": {
+    "editor.quickSuggestions": {
+      "other": false,
+      "comments": false,
+      "strings": false
+    }
+  }
+}
