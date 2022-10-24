@@ -3,6 +3,7 @@
 using namespace std;
 
 
+/** [0, 2147483647] */
 int xor64() {
   static uint64_t x = 233397374093810282ULL;
   x ^= x<<13;
