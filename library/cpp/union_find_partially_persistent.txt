@@ -1,0 +1,8 @@
+過去の状態を参照できる UnionFind
+
+解説
+https://noshi91.hatenablog.com/entry/2018/05/30/191943
+https://noshi91.hatenablog.com/entry/2018/02/18/161529
+
+実装
+https://github.com/drken1215/algorithm/tree/master/DataStructure
