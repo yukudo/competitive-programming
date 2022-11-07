@@ -1,0 +1,7 @@
+undo 操作ができるタイプの UnionFind
+
+経路圧縮をやらないならば par[] は merge のときに高々2か所が変更されるのみである。
+変更されるたびに位置と変更前の値 vector<pair<位置, 値> > history として記録しておけば undo ができる。
+
+実装：
+https://github.com/drken1215/algorithm/blob/master/DataStructure/
