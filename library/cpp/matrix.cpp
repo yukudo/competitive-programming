@@ -142,9 +142,10 @@ double det(Matrix A) {
     if (pivot != i) swap(A[pivot], A[i]);
     D *= A[i][i] * (i != pivot ? -1 : 1);
     if (abs(A[i][i]) < EPS) break;
+    double P = 1 / A[i][i];
     for(int j = i + 1; j < n; j++)
       for(int k = n-1; k >= i; --k)
-        A[j][k] -= A[i][k] * A[j][i] / A[i][i];
+        A[j][k] -= A[i][k] * A[j][i] * P;
   }
   return D;
 }
