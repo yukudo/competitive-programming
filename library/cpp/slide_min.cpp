@@ -10,6 +10,8 @@
 // 
 // push/get で指定する pos は時間とともに単調増加すること。
 //
+// SlidingWindowAggregation という上位互換のデータ構造がある。
+//
 struct SlideMin {
   int K;
   deque<ll> idx, data;
