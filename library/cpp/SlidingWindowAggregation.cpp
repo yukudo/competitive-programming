@@ -1,5 +1,5 @@
 //
-// deque の4操作に加えて prod_all() が行えるデータ構造。特殊ケースとして slide_min を作れる。
+// deque の4操作に加えて all_prod() が行えるデータ構造。特殊ケースとして slide_min を作れる。
 // 
 const ll MOD = 998244353;
 struct F { int a, b; };
